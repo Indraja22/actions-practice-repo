@@ -28,7 +28,7 @@ jobs:
 
     - name: Run Robot Framework tests
       run: |
-        robot testcases/
+        robot --outputdir output testcases/
       continue-on-error: true  # optional, if you want the workflow to continue on test failure
 
     - name: Archive test results
@@ -36,7 +36,7 @@ jobs:
       uses: actions/upload-artifact@v2
       with:
         name: robotframework-results
-        path: actions-practice-repo/*  # or the path where your output files are generated
+        path: output/*  # or the path where your output files are generated
 
     - name: Notify of test result
       if: failure()
