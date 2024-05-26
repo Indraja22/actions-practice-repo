@@ -1,10 +1,10 @@
 name: Robot Framework Tests
 
 on:
-  push:
-    branches: [ develop ]
-  pull_request:
-    branches: [ develop ]
+  # push:
+  #   branches: [ develop ]
+  # pull_request:
+  #   branches: [ develop ]
   workflow_dispatch:  
 
 jobs:
@@ -31,22 +31,6 @@ jobs:
         robot --outputdir output testcases/
       continue-on-error: true  # optional, if you want the workflow to continue on test failure
 
-    - name: Display test results summary
-      run: |
-        python - <<EOF
-        import xml.etree.ElementTree as ET
-
-        tree = ET.parse('output/output.xml')
-        root = tree.getroot()
-
-        total_tests = int(root.attrib['total'])
-        passed_tests = int(root.attrib['passed'])
-        failed_tests = int(root.attrib['failed'])
-
-        print(f"Total tests: {total_tests}")
-        print(f"Passed tests: {passed_tests}")
-        print(f"Failed tests: {failed_tests}")
-        EOF
 
     - name: Archive test results
       if: always()
