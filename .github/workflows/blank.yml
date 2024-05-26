@@ -36,7 +36,7 @@ jobs:
       uses: actions/upload-artifact@v2
       with:
         name: robotframework-results
-        path: output/*  # or the path where your output files are generated
+        path: actions-practice-repo/*  # or the path where your output files are generated
 
     - name: Notify of test result
       if: failure()
